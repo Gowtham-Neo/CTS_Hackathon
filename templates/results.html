@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stock Recommendation Results</title>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Your Flask App</title>
+        <link
+          rel="icon"
+          href="{{ url_for('static', filename='logo.png') }}"
+          type="image/x-icon"
+        />
+      </head>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(to right, #3498db , green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        margin-top: 0;
+        text-align: center;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      a {
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s;
+        font-size:20px;
+      }
+      a:hover {
+        color: #0056b3;
+      }
+      .no-stocks {
+        text-align: center;
+        color: red;
+        font-size: 20px;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Analysis Report</h1>
+      {% if best_stocks %}
+      <ul>
+        {% for stock in best_stocks %}
+        <li>
+          <a href="{{ url_for('show_stock_details', symbol=stock) }}"
+            >{{ stock }}</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="no-stocks">
+        No recommended stocks within the investable amount.
+      </p>
+      {% endif %}
+    </div>
+    
+  </body>
+</html>
