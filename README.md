@@ -6,7 +6,7 @@ EquityVision is a stock recommendation system that assists users in making infor
 
 This project consists of four main parts:
 
-1. `app.py`: Flask web application serving as the user interface and handling user input for the investable amount and also
+1. `index.py`: Flask web application serving as the user interface and handling user input for the investable amount and also
 Contains the machine learning model for predicting stock price changes.
 2. `datasets`:Directory containing all the datasets of nifty-50 stocks in csv format
 3. `templates/`: Directory containing HTML templates for the user interface.
@@ -39,11 +39,11 @@ Before running the project, ensure you have the following dependencies installed
 How to Use
 1.Clone this repository to your local machine:
 ```bash
-git clone https://github.com/your-username/equityvision.git
+git clone https://github.com/Gowtham-S-Git/CTS_Hackathon.git
  ```
 2.Navigate to the project directory:
 ```bash
-cd
+cd CTS_Hackathon
   ```
 3.You also need to install the required libraries using the following commands:
 
