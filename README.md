@@ -76,7 +76,8 @@ Enter valid numerical investable amount to get the recommended stocks then after
 see key metrics and graph from 2020 to 2021
 
 #my GIF
-![]https://github.com/Gowtham-S-Git/CTS_Hackathon/blob/main/static/Process.gif
+
+![](https://github.com/Gowtham-S-Git/CTS_Hackathon/blob/main/static/Process.gif)
 
 
 
