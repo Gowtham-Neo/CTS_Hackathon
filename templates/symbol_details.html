@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ symbol }} Details</title>
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='logo.png') }}"
+      type="image/x-icon"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        margin-top: 0;
+        text-align: center;
+      }
+      canvas {
+        max-width: 100%;
+        height: auto;
+      }
+      .plot-container {
+        text-align: center;
+        margin-top: 300px;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      p {
+        margin: 10px 0;
+      }
+      .key-metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+      }
+      .key-metric {
+        flex: 1 1 calc(50% - 10px);
+        border: 1px solid #ccc;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .center {
+        align-items: center;
+        text-align: center;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>{{ symbol }} Details</h2>
+      <script>
+        // Extract data from the template variable
+        var stockData = {{ stock_data | tojson }};
+
+        var ctx = document.getElementById('stockGraph').getContext('2d');
+
+        var stockChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: stockData.map(entry => entry.Date),
+                datasets: [{
+                    label: 'LTP',
+                    data: stockData.map(entry => entry.LTP),
+                    borderColor: 'blue',
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+      </script>
+      <div class="plot-container">
+        <img
+          src="data:image/png;base64, {{ plot_img }}"
+          alt="{{ symbol }} Plot"
+        />
+      </div>
+      <div>
+        <h3 class="center">KEY METRICS</h3>
+      </div>
+      <div class="key-metrics">
+        <div class="key-metric">
+          <h3>PE Ratio:</h3>
+          <p>{{ pe_ratio }}</p>
+        </div>
+        <div class="key-metric">
+          <h3>PB Ratio:</h3>
+          <p>{{ pb_ratio }}</p>
+        </div>
+        <div class="key-metric">
+          <h3>Earning / Share:</h3>
+          <p>{{ eps }}</p>
+        </div>
+        <div class="key-metric">
+          <h3>Divident Yield:</h3>
+          <p>{{ Div }}</p>
+        </div>
+        <div class="key-metric">
+          <h3>Market Cap:</h3>
+          <p>{{ Mcap }}</p>
+        </div>
+        <div class="key-metric">
+          <h3>Face Value:</h3>
+          <p>{{ Face_value }}</p>
+        </div>
+        <!-- Add other key metrics here -->
+      </div>
+    </div>
+  </body>
+</html>
